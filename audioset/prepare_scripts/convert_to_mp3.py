@@ -4,10 +4,10 @@ import glob
 import os
 
 # Replace this with the dataset downloaded using PANN scripts
-source_path = "/share/cp/datasets/full_audioset/audioset201906/audios/"
+source_path = "../audioset/audios/"
 
 # Replace with the output directory
-out_path = "./mp3_audio/"
+out_path = "../audioset/mp3_audio/"
 
 all_num = 0
 
@@ -21,7 +21,7 @@ def process_folder(fol="balanced_train_segments"):
     all_num = len(all_files)
     cmds = [(i, file, out_path + fol + "/" + os.path.basename(file)[:-3]) for i, file in enumerate(all_files)]
     print(cmds[0])
-    with multiprocessing.Pool(processes=20) as pool:
+    with multiprocessing.Pool(processes=2) as pool:
         pool.starmap(process_one, cmds)
 
 
@@ -44,8 +44,7 @@ if __name__ == '__main__':
 
     source_path = args.source or source_path
     out_path = args.out or out_path
-    folders = ['balanced_train_segments', 'eval_segments'] + ["unbalanced_train_segments/" + x for x in sorted(
-        os.listdir(source_path + "unbalanced_train_segments/"))]
+    folders = ['balanced_train_segments', 'eval_segments']
 
     print("I will work on these folders:")
     print(folders)

@@ -7,10 +7,10 @@ import os
 
 
 # %%
-base_dir = "../../audioset_hdf5s/"
-balanced_csv= base_dir+ "metadata/balanced_train_segments.csv"
-eval_csv= base_dir+ "metadata/eval_segments.csv"
-mp3_path = "../../mp3_audio/"
+base_dir = "../../../audioset_hdf5s/"
+balanced_csv= "../../../audioset/metadata/balanced_train_segments.csv"
+eval_csv= "../../../audioset/metadata/eval_segments.csv"
+mp3_path = "../../../audioset/mp3_audio/"
 
 
 # %%
@@ -50,7 +50,7 @@ def read_metadata(csv_path, classes_num, id_to_ix):
     return meta_dict
 
 # Load label
-with open(base_dir+'metadata/class_labels_indices.csv', 'r') as f:
+with open('../../../audioset/metadata/class_labels_indices.csv', 'r') as f:
     reader = csv.reader(f, delimiter=',')
     lines = list(reader)
 
@@ -97,9 +97,6 @@ def check_available(balanced_csv,balanced_audio_path,prefix=None):
 # %%
 
 # %%
-
-
-
 for read_file,prefix in [(balanced_csv,"balanced_train_segments/"), (eval_csv,"eval_segments/"),]:
     print("now working on ",read_file,prefix)
     #files, y = torch.load(read_file+".pth")
